@@ -1,70 +1,14 @@
-import type React from 'react'
 import { Link } from 'react-router-dom'
-import {
-  ArrowUpRight,
-  FolderOpen,
-  User,
-  Robot,
-  Medal,
-  Stack,
-  Quotes,
-  FunnelSimple,
-  Gear,
-  AddressBook,
-  Globe,
-  AppWindow,
-  SealCheck,
-} from '@/components/slab'
-import { gymFunnel, bookingFunnel, websiteFunnel, type Funnel } from '@/data/funnels'
-import { aiStack, type StackNode } from '@/data/ai-stack'
+import { ArrowUpRight, FolderOpen, User, Medal, Stack, Quotes } from '@/components/slab'
 import { profile } from '@/data/profile'
 
-/**
- * Home's showcase: one card per rail view, each an index of what that view
- * holds, each built from content the portfolio already ships. Every card is
- * a link. Nothing here invents a fact - the funnels, the tools, the clients
- * and the credentials are the same records the views render in full.
- *
- * Motion is transform-only on a clipped inner track, so a card never adds
- * height and Home stays a single viewport.
- */
-
-const thumbSrc = (f: Funnel) =>
-  `/home/${f.dir ?? 'funnels'}-${f.file.replace('.html', '.jpeg')}`
-
-const PROJECT_SHOTS = [gymFunnel[0], bookingFunnel[0], websiteFunnel[0], gymFunnel[1]].filter(Boolean)
-
-const OFFERS = [
-  { Icon: FunnelSimple, title: 'Service One', note: 'PLACEHOLDER one-liner' },
-  { Icon: Gear, title: 'Service Two', note: 'PLACEHOLDER one-liner' },
-  { Icon: AddressBook, title: 'Service Three', note: 'PLACEHOLDER one-liner' },
-  { Icon: Globe, title: 'Service Four', note: 'PLACEHOLDER one-liner' },
-  { Icon: AppWindow, title: 'Service Five', note: 'PLACEHOLDER one-liner' },
-] as const
-
-const CLIENTS = [
-  { name: 'Client Name 1', role: 'PLACEHOLDER - your role for them', work: 'Tag · Tag · Tag', logo: '/placeholders/logo.svg' },
-  { name: 'Client Name 2', role: 'PLACEHOLDER - your role for them', work: 'Tag · Tag · Tag', logo: '/placeholders/logo.svg' },
-  { name: 'Client Name 3', role: 'PLACEHOLDER - your role for them', work: 'Tag · Tag · Tag' },
-]
-
-// Three photos of you, fanned. Small copies are fine - the fan shows them under 100px.
-const PHOTOS = [profile.avatarSrc, '/avatar.svg?2', '/avatar.svg?3']
-
-/** The AI systems as a flat list: every leaf of the Projects tree, in order. */
-const leaves = (n: StackNode): StackNode[] =>
-  n.children?.length ? n.children.flatMap(leaves) : [n]
-const AI_BUILDS = leaves(aiStack)
-
-function CardHead({
-  Icon,
-  title,
-  desc,
-}: {
+type CardHeadProps = {
   Icon: typeof FolderOpen
   title: string
   desc: string
-}) {
+}
+
+function CardHead({ Icon, title, desc }: CardHeadProps) {
   return (
     <header className="bento__head">
       <span className="bento__label">
@@ -80,112 +24,94 @@ function CardHead({
 }
 
 export default function HomeBento() {
-  const half = Math.ceil(AI_BUILDS.length / 2)
-  const toolRows = [AI_BUILDS.slice(0, half), AI_BUILDS.slice(half)]
-
   return (
-    <nav className="bento" aria-label="Explore the portfolio">
-      {/* Projects: the funnel thumbnails drift upward on a looped track. */}
-      <Link to="/projects" className="bento__card bento__card--projects">
-        <CardHead Icon={FolderOpen} title="Projects" desc="PLACEHOLDER - one line on what your projects are." />
-        <div className="bento__media bento__reel" aria-hidden="true">
-          <div className="bento__reel-track">
-            {[...PROJECT_SHOTS, ...PROJECT_SHOTS].map((f, i) => (
-              <span key={i} className="bento__shot">
-                <img src={thumbSrc(f)} alt="" loading="lazy" decoding="async" />
-              </span>
-            ))}
-          </div>
+    <nav className="bento sharra-bento" aria-label="Explore the portfolio">
+      <Link to="/projects" className="bento__card bento__card--projects sharra-bento__projects">
+        <CardHead
+          Icon={FolderOpen}
+          title="Projects"
+          desc="SOPs, knowledge bases, documentation systems, and operations work."
+        />
+        <div className="sharra-mini-list" aria-hidden="true">
+          <span>Construction SOPs</span>
+          <span>SaaS knowledge base</span>
+          <span>Documentation workflow</span>
+          <span>Technical manuals</span>
         </div>
       </Link>
 
-      {/* About: a fanned stack of photos. */}
       <Link to="/about" className="bento__card bento__card--about">
-        <CardHead Icon={User} title="About" desc="PLACEHOLDER - one line about you." />
-        <div className="bento__media bento__fan" aria-hidden="true">
-          {PHOTOS.map((src, i) => (
-            <span key={src} className="bento__photo" style={{ ['--i' as string]: i }}>
-              <img src={src} alt="" loading="lazy" decoding="async" />
-            </span>
-          ))}
+        <CardHead
+          Icon={User}
+          title="About"
+          desc="Technical writer turned documentation-focused operations partner."
+        />
+        <div className="sharra-signature" aria-hidden="true">
+          <span>Hi, I&apos;m</span>
+          <strong>{profile.firstName}.</strong>
         </div>
       </Link>
 
-      {/* AI builds: the systems from the Projects tree, two chip rows
-          scrolling against each other. */}
-      <Link to="/projects" className="bento__card bento__card--ai">
-        <CardHead Icon={Robot} title="AI Builds" desc="PLACEHOLDER - one line on your AI or side builds." />
-        <div className="bento__media bento__chips" aria-hidden="true">
-          {toolRows.map((row, r) => (
-            <div key={r} className="bento__chip-row" data-dir={r ? 'right' : 'left'}>
-              <div className="bento__chip-track">
-                {[...row, ...row].map((n, i) => (
-                  <span key={`${n.id}-${i}`} className="bento__chip" data-status={n.status}>
-                    <n.Icon size={15} weight="duotone" />
-                    {n.name}
-                  </span>
-                ))}
-              </div>
-            </div>
-          ))}
+      <Link to="/showcase" className="bento__card bento__card--ai">
+        <CardHead
+          Icon={Quotes}
+          title="How I work"
+          desc="I learn the real workflow, find the gaps, then make it easier to repeat."
+        />
+        <div className="sharra-flow" aria-hidden="true">
+          <span>Learn</span><i />
+          <span>Organize</span><i />
+          <span>Document</span><i />
+          <span>Improve</span>
         </div>
       </Link>
 
-      {/* Credentials: the badge that matters, on its plate. */}
       <Link to="/about" className="bento__card bento__card--creds">
-        <CardHead Icon={Medal} title="Credentials" desc="PLACEHOLDER - your main certification." />
-        <div className="bento__media bento__badge" aria-hidden="true">
-          <span className="bento__badge-ring">
-            <img src="/placeholders/badge.svg" alt="" width={72} height={72} />
-          </span>
-          <span className="bento__badge-tag">
-            <SealCheck size={14} weight="fill" />
-            Your Credential
-          </span>
+        <CardHead
+          Icon={Medal}
+          title="Credentials"
+          desc="Computer Engineering · C2 English · ISO 9001 training."
+        />
+        <div className="sharra-credential" aria-hidden="true">
+          <strong>5+</strong>
+          <span>years in technical writing</span>
         </div>
       </Link>
 
-      {/* Services: the five offers as a compact index. */}
       <Link to="/services" className="bento__card bento__card--services">
-        <CardHead Icon={Stack} title="Services" desc="PLACEHOLDER - what you offer, and to whom." />
+        <CardHead
+          Icon={Stack}
+          title="Services"
+          desc="Operations support with a documentation brain."
+        />
         <ul className="bento__media bento__offers" role="list">
-          {OFFERS.map(({ Icon, title, note }, i) => (
-            <li key={title} className="bento__offer" style={{ '--i': i } as React.CSSProperties}>
-              <span className="bento__offer-tile">
-                <Icon size={15} weight="duotone" aria-hidden="true" />
-              </span>
+          {[
+            ['01', 'Virtual Assistance', 'Keep the moving pieces visible.'],
+            ['02', 'SOPs & Processes', 'Turn know-how into repeatable steps.'],
+            ['03', 'Knowledge Bases', 'Help users find answers faster.'],
+            ['04', 'Document Management', 'Keep files, requests, and updates in order.'],
+          ].map(([n, title, note]) => (
+            <li key={n} className="bento__offer">
               <span className="bento__offer-text">
                 <span className="bento__offer-title">{title}</span>
                 <span className="bento__offer-note">{note}</span>
               </span>
-              <span className="bento__offer-num" aria-hidden="true">
-                0{i + 1}
-              </span>
+              <span className="bento__offer-num" aria-hidden="true">{n}</span>
             </li>
           ))}
         </ul>
       </Link>
 
-      {/* Testimonials: client cards drifting up a clipped column. */}
-      <Link to="/testimonials" className="bento__card bento__card--quotes">
-        <CardHead Icon={Quotes} title="Testimonials" desc="PLACEHOLDER - one line on your clients." />
-        <div className="bento__media bento__reviews" aria-hidden="true">
-          <div className="bento__reviews-track">
-            {[...CLIENTS, ...CLIENTS].map((c, i) => (
-              <span key={i} className="bento__review">
-                <span className="bento__review-top">
-                  {c.logo ? (
-                    <img src={c.logo} alt="" width={18} height={18} />
-                  ) : (
-                    <Quotes size={14} weight="fill" />
-                  )}
-                  <b>{c.name}</b>
-                </span>
-                <span className="bento__review-role">{c.role}</span>
-                <span className="bento__review-work">{c.work}</span>
-              </span>
-            ))}
-          </div>
+      <Link to="/experience" className="bento__card bento__card--quotes">
+        <CardHead
+          Icon={Quotes}
+          title="Experience"
+          desc="5+ years across SaaS, technical documentation, knowledge bases, and operations."
+        />
+        <div className="sharra-mini-list sharra-mini-list--compact" aria-hidden="true">
+          <span>SaaS documentation</span>
+          <span>Cross-functional coordination</span>
+          <span>ISO-aligned document control</span>
         </div>
       </Link>
     </nav>

@@ -1,13 +1,13 @@
 :root {
   /* Brand palette */
-  --navy:       #0B1E3F;   /* primary text, card surface, dark accents */
-  --navy-ink:   #060C1A;   /* matches shader dark base for .dark-section */
-  --cream:      #F4F4ED;   /* matches shader light base, page bg */
+  --navy:       #332D46;   /* primary text, card surface, dark accents */
+  --navy-ink:   #17131F;   /* matches shader dark base for .dark-section */
+  --cream:      #F7F3EE;   /* matches shader light base, page bg */
   --white:      #FFFFFF;
-  --orange:     #FF7A1A;   /* CTA, accent bar, active dot */
-  --orange-hover: #FFA155; /* CTA hover state */
-  --orange-ink: #B4490A;   /* accessible orange TEXT on light bg - 4.88:1 on cream, 5.39:1 on white (WCAG AA) */
-  --muted:      #5A6479;
+  --orange:     #D66F5D;   /* CTA, accent bar, active dot */
+  --orange-hover: #E38A79; /* CTA hover state */
+  --orange-ink: #A64738;   /* accessible orange TEXT on light bg - 4.88:1 on cream, 5.39:1 on white (WCAG AA) */
+  --muted:      #6F6978;
   --divider:    rgba(11, 30, 63, 0.12);
   --success:    #2E9E6B;   /* form status ok - clears 4.5:1 on navy-ink */
   --error:      #D9544F;   /* form status error - clears 4.5:1 on navy-ink */
@@ -83,7 +83,7 @@
   /* The opaque fill for sections that were written as white-on-navy back when
      the shader inverted on scroll. It no longer does, so they carry their own
      ground. Same navy in both themes: their type is light either way. */
-  --panel-dark: #060C1A;
+  --panel-dark: #17131F;
 
   /* Verified badge - Facebook blue, not the site accent. It is a platform
      signal, not brand furniture, so it does not follow --orange. */
@@ -103,11 +103,11 @@
    --cream (page), --navy (ink), --white (card surface) and flips with it.
    Orange stays the single accent in both modes. */
 [data-theme='dark'] {
-  --cream:        #070B14;
-  --paper:        #0B1120;
-  --white:        #0E1626;
+  --cream:        #15121A;
+  --paper:        #1D1825;
+  --white:        #241D2C;
   --navy:         #EDF0F6;
-  --navy-ink:     #04070F;
+  --navy-ink:     #0E0B12;
   --muted:        rgba(237, 240, 246, 0.60);
   --divider:      rgba(255, 255, 255, 0.10);
   --line:         rgba(255, 255, 255, 0.09);
@@ -115,8 +115,8 @@
   --tint:         rgba(255, 255, 255, 0.05);
   --tint-strong:  rgba(255, 255, 255, 0.09);
   --glass:        rgba(14, 22, 38, 0.72);
-  --orange-ink:   #FF9A4D;
-  --panel-dark:   #0B1120;
+  --orange-ink:   #E99586;
+  --panel-dark:   #1D1825;
   --brands-chip-bg:     #F4F4ED;
   --brands-chip-border: rgba(255, 255, 255, 0.14);
   --shadow-soft:  0 20px 60px -20px rgba(0, 0, 0, 0.75);

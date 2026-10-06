@@ -26,6 +26,17 @@
     />
     <meta name="twitter:card" content="summary_large_image" />
 
+    <style>
+      #static-fallback{position:fixed;inset:0;z-index:0;display:grid;place-items:center;padding:32px;background:#F7F3EE;color:#332D46;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+      #root{position:relative;z-index:1}
+      .fallback-card{max-width:760px}
+      .fallback-kicker{display:block;margin-bottom:14px;color:#A64738;font-size:12px;font-weight:800;letter-spacing:.14em}
+      .fallback-card h1{margin:0;font-size:clamp(42px,7vw,88px);line-height:.98;letter-spacing:-.05em}
+      .fallback-card p{max-width:650px;margin:22px 0 0;color:#6F6978;font-size:clamp(16px,2vw,21px);line-height:1.6}
+      .fallback-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+      .fallback-links a{display:inline-flex;padding:11px 16px;border-radius:999px;background:#332D46;color:#fff;text-decoration:none;font-size:14px;font-weight:700}
+      .fallback-links a+ a{background:transparent;color:#332D46;box-shadow:inset 0 0 0 1px rgba(51,45,70,.18)}
+    </style>
     <script>
       (function () {
         try {
@@ -42,6 +53,17 @@
     </script>
   </head>
   <body>
+    <div id="static-fallback" aria-live="polite">
+      <div class="fallback-card">
+        <span class="fallback-kicker">MARY SHARRA</span>
+        <h1>Organize the work.<br />Document the process.</h1>
+        <p>Documentation + operations support for growing teams: SOPs, knowledge bases, process documentation, and virtual assistance.</p>
+        <div class="fallback-links">
+          <a href="mailto:bmarysharra@gmail.com">Email me</a>
+          <a href="https://www.upwork.com/freelancers/~018cf61028a8af7c20" target="_blank" rel="noopener noreferrer">Upwork profile</a>
+        </div>
+      </div>
+    </div>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

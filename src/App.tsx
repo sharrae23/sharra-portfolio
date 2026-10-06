@@ -17,7 +17,7 @@ export default function App() {
   useLenis()
 
   const { pathname } = useLocation()
-  const FIXED_ROUTES = ['/', '/projects', '/experience', '/testimonials', '/about', '/contact']
+  const FIXED_ROUTES = ['/']
   const isFixed = FIXED_ROUTES.includes(pathname)
   const phone = useIsPhone()
   const panelRef = useRef<HTMLElement>(null)

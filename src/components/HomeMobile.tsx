@@ -35,7 +35,7 @@ const TILES = [
   { n: '02', label: 'Services', to: '/services', title: 'Support for the work behind the work.', desc: 'VA support, SOPs, KBs, and document management.', Icon: Stack },
   { n: '03', label: 'Showcase', to: '/showcase', title: 'From scattered to structured.', desc: 'See the method I use to learn and improve a workflow.', Icon: Coffee, accent: true },
   { n: '04', label: 'Experience', to: '/experience', title: '5+ years in documentation.', desc: 'SaaS, technical teams, process owners, and operations.', Icon: Stack },
-  { n: '05', label: 'About', to: '/about', title: `Hi, I&apos;m ${profile.firstName}.`, desc: 'I like leaving things more organized than I found them.', Icon: Coffee },
+  { n: '05', label: 'About', to: '/about', title: `Hi, I'm ${profile.firstName}.`, desc: 'I like leaving things more organized than I found them.', Icon: Coffee },
 ] as const
 
 export function HomeExplore() {

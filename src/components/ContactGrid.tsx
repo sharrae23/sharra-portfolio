@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react'
+import { useState, type FormEvent } from 'react'
 import { ArrowUpRight } from '@/components/slab'
 import { profile } from '@/data/profile'
 import { FAQS } from '@/data/faqs'
